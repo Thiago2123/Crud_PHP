@@ -1,20 +1,20 @@
 <?php 
-    include_once "conexaoComBd.php";
+    include_once "../conexaoComBd.php";
 
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
     if(empty($dados['nome'])){
         $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' 
-        role='alert'> Erro, preencher o campo nome </div>"]; 
+        role='alert'> <b>Erro</b>: Deve preencher o campo <b>nome</b> </div>"]; 
     }elseif(empty($dados['email'])){
         $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' 
-        role='alert'> Erro, preencher o campo email </div>"]; 
+        role='alert'> <b>Erro</b>: Deve preencher o campo <b>email</b> </div>"]; 
     }elseif(empty($dados['cpf'])){
         $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' 
-        role='alert'> Erro, preencher o campo cpf </div>"]; 
+        role='alert'> <b>Erro</b>: Deve preencher o campo <b>cpf</b> </div>"]; 
     }elseif(empty($dados['cep'])){
         $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' 
-        role='alert'> Erro, preencher o campo CEP </div>"]; 
+        role='alert'> <b>Erro</b>: Deve preencher o campo <b>CEP</b> </div>"]; 
     }else{
         $query_cliente = "INSERT INTO clientes (nome, email, cpf, cep, rua, complemento, cidade, estado)
         VALUES (:nome, :email, :cpf, :cep, :rua, :complemento, :cidade, :estado)";
@@ -34,7 +34,7 @@
             role='alert'>Cadastrado com sucesso </div>"]; 
         }else{
             $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' 
-            role='alert'> Erro, preencher o campo cpf </div>"]; 
+            role='alert'> <b>Erro</b>: Não foi possivel cadastrar esse usuario </div>"]; 
         }
     }
 

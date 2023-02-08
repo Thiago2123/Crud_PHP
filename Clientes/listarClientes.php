@@ -1,5 +1,5 @@
 <?php
-    include_once "./conexaoComBd.php";
+    include_once "../conexaoComBd.php";
     
     $dados_requisicao = $_REQUEST;
 
@@ -18,6 +18,7 @@
 
     $query_qnt_clientes = "SELECT COUNT(id) AS qnt_clientes FROM clientes ";
 
+    //modificar a query para realizar a pesquisa
     if(!empty($dados_requisicao['search']['value'])){
         $query_qnt_clientes .= " WHERE id LIKE :id ";
         $query_qnt_clientes .= " OR nome LIKE :nome ";
@@ -86,9 +87,9 @@
         $registro[] = $email;
         $registro[] = $cpf;
         $registro[] = $rua;
-        $registro[] = $complemento;
-        $registro[] = $cidade;
-        $registro[] = $estado;
+        $registro[] = " <button type='button' id='$id' onclick='visualizarCliente($id)' class='btn btn-primary btn-sm'>Detalhes</button> 
+                        <button type='button' id='$id' onclick='modalEditarCliente($id)' class='btn btn-warning btn-sm'>Editar</button> 
+                        <button type='button' id='$id' onclick='excluirCliente($id)' class='btn btn-danger btn-sm'>Excluir</button>";
         $dados[] = $registro;
     }
     //var_dump($dados);
