@@ -2,6 +2,7 @@
     include_once "../conexaoComBd.php";
 
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+    $data = date("H:i:s");
 
     if(empty($dados['nome'])){
         $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' 

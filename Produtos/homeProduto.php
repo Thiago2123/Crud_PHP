@@ -11,7 +11,6 @@
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
     
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="../js/produtos.js"></script>
     <script src="../js/ajustarCep.js"></script>
@@ -19,6 +18,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <div class="d-flex justify-content-between align-items-center p-3 pb-2">
             <h1 class="display-6 mb-4">Listar Produtos</h1>
@@ -65,12 +65,17 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-sm-6">
-                                <label for="valorProduto">Valor</label>
-                                <input type="text" name="valor" class="form-control" id="valorProduto" placeholder="Valor do Produto">
+                                <label class="sr-only" for="valorProduto">Valor</label>
+                                <div class="input-group form-group col-sm-6">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text btn btn-success btn-md">R$</div>
+                                    </div>
+                                    <input type="number" name='valor' class="form-control" id="valorProduto" placeholder="Valor do Produto">
+                                </div>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="criadoEmProduto">Data de Criação</label>
-                                <input type="date" readyonly name="criado_em" class="form-control" id="criadoEmProduto" placeholder="" >
+                                <input type="text" name="criado_em" class="form-control" id="criadoEmProduto"  disabled >
                             </div>
                         </div>
                         <div>

@@ -3,6 +3,7 @@
 
     $dados_requisicao = $_REQUEST;
     
+    
     //lista de colunas na tabela para ordenar
     $colunas = [
         0 => 'id',
@@ -69,11 +70,13 @@
 
     $result_produtos->execute();
     //var_dump($result_produtos);
+     
 
 
     while ($row_produto = $result_produtos->fetch(PDO::FETCH_ASSOC)) {
-        //var_dump($row_cliente);
+        //var_dump($row_produto);
         extract($row_produto);
+        
         $registro = [];
         //como dei o "extract" na query posso usar o nome da coluna diretamente como chave do array
         $registro[] = $id;

@@ -12,9 +12,8 @@
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
 
     <script src="js/clientes.js"></script>
-    <script src="js/ajustarCep.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <a href="#" onclick="swal('Testanto o SweetAlert.');">Clique aqui</a>
+    <div href="#" onclick="swal('Testanto o SweetAlert.');">Clique laaqui</div>
 
 
 </head>

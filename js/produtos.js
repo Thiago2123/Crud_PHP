@@ -7,14 +7,23 @@ $(document).ready(function () {
                 "url": "//cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json",
             }
         });
-    
 
+    var data = new Date();
+    var dia = String(data.getDate()).padStart(2, '0');
+    var mes = String(data.getMonth() + 1).padStart(2, '0');
+    var ano = data.getFullYear();
+    dataAtual = dia + '/' + mes + '/' + ano;
+
+        //console.log(dataAtual);
+    
+    document.getElementById('criadoEmProduto').value = dataAtual;
+
+    
 })
 
 
 function cadastrarProdutos(){
     const formNovoProduto = document.getElementById("form-cad-produto");
-    //const fecharModalCadastro = new bootstrap.Modal(document.getElementById("modalCadastroCliente"));
     //console.log(formNovoProduto );
     if(formNovoProduto){
        formNovoProduto.addEventListener("submit", async(e) => {
@@ -24,7 +33,7 @@ function cadastrarProdutos(){
    
            const dados = await fetch("cadastrarProduto.php", {
                method: "POST",
-               body: dadosForm
+               body: dadosForm,
            });        
            const resposta = await dados.json();
            
@@ -34,6 +43,7 @@ function cadastrarProdutos(){
                document.getElementById("msgAlerta").innerHTML = resposta['msg'];
                formNovoProduto.reset();
                $('#modalCadastroProduto').modal('hide');
+               document.getElementById('criadoEmProduto').value = dataAtual;
                listarDataTables = $('#listar-produtos').DataTable();
                listarDataTables.draw();
    
@@ -43,7 +53,7 @@ function cadastrarProdutos(){
    
        });
     }
-   }
+}
 
    
 async function visualizarProduto(id){
@@ -57,8 +67,8 @@ async function visualizarProduto(id){
         document.getElementById("idProdutoVis").innerHTML = resposta['dados'].id;
         document.getElementById("nomeProdutoVis").innerHTML = resposta['dados'].nome;
         document.getElementById("descricaoProdutoVis").innerHTML = resposta['dados'].descricao;
-        document.getElementById("valorProdutoVis").innerHTML = 'R$  ' + resposta['dados'].valor;
-        document.getElementById("criadoEmProdutoVis").innerHTML = resposta['dados'].criado_em;
+        document.getElementById("valorProdutoVis").innerHTML = 'R$  ' + resposta['dados'].valor + ',00';
+        document.getElementById("criadoEmProdutoVis").innerHTML = resposta.dataFormatada;
         
         document.getElementById("msgAlerta").innerHTML = "";
 
@@ -112,7 +122,7 @@ function salvarEditProduto(){
                 formEditProduto.reset();
                 $('#modalEditarProduto').modal('hide');
 
-                //atualizar a lista de clientes
+                //atualizar a lista de Produtos
                 listarDataTables = $('#listar-produtos').DataTable();
                 listarDataTables.draw();
 
@@ -126,7 +136,8 @@ function salvarEditProduto(){
 
 
 async function excluirProduto(id){
-    var confirmarExclusao = confirm("Tem certeza que deseja excluir o cliente selecionado? ");
+    var confirmarExclusao = confirm("Tem certeza que deseja excluir o produto selecionado? ");
+    //console.log (confirmarExclusao);
     if(confirmarExclusao){
         //console.log("acessou com o id: "+id);
         const dados = await fetch("excluirProduto.php?id=" + id);
@@ -143,3 +154,4 @@ async function excluirProduto(id){
         }
     }
 }
+
