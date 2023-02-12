@@ -34,7 +34,6 @@ $(document).ready(function () {
     $("#descontoPedido").blur(function() {
         // pegar o valor que é digitado quando mudar o foco do input
         var porcentagem = $(this).val();
-
         // pegar o valor total do pedido sem o desconto e tranformar em float retirando a ','
         var valorOrginal = parseFloat(document.getElementById("precoVenda").value.replace(',','.'));
         // equação para decobrir o desconto
@@ -42,9 +41,10 @@ $(document).ready(function () {
         // verificar qual o novo valor com o desconto aplicado
         var valorNovoComDesconto = valorOrginal - valorDesconto
         // console.log(valorNovoComDesconto);
-        
-        document.getElementById("precoVenda").value = valorNovoComDesconto.toFixed(2).replace('.',',');
-
+        if(!isNaN(valorOrginal)){
+            document.getElementById("precoVenda").value = valorNovoComDesconto.toFixed(2).replace('.',',');
+            document.getElementById("descontoPedido").value = "";
+        }
     });
 
 
@@ -88,13 +88,13 @@ async function visualizarClientesPedido(pedidoId){
     //console.log("id: "+id);
     const dados = await fetch('visualizarClientesPedido.php?id=' + pedidoId);
     const resposta = await dados.json();
-    //console.log(resposta);
-
+    
     $('#modalvisualisarClientesPedido').modal('show');
     if(resposta['status']){
+        //console.log(resposta['dados']);
         document.getElementById("nomeVisuCliPed").innerHTML = resposta['dados'].nome;
         document.getElementById("cpfVisuCliPed").innerHTML = resposta['dados'].cpf;
-        document.getElementById("ruaVisuCliPed").innerHTML = resposta['dados'].rua;
+        document.getElementById("ruaVisuCliPed").innerHTML = resposta['dados'].rua + ", " + resposta['dados'].complemento;
         document.getElementById("cidadeVisuCliPed").innerHTML = resposta['dados'].cidade;
         document.getElementById("estadoVisuCliPed").innerHTML = resposta['dados'].estado;
         document.getElementById("criadoEmVisuCliPed").innerHTML = resposta.dataFormatada;
@@ -109,21 +109,48 @@ async function visualizarClientesPedido(pedidoId){
 
 
 async function salvarEditPedido(pedidoId) {
-    var selectStatusPedido = document.getElementById("selectStatusPedido").value;
-    
+    // gravo o valor do selectStatusPedido em uma variavel
+    var selectStatusPedido = document.getElementById("selectStatusPedido"+pedidoId).value;
     //console.log(selectStatusPedido);
     //console.log(pedidoId);
     var dados = await fetch("editarPedido.php?selectStatusPedido=" + selectStatusPedido + "&pedidoId=" + pedidoId);
     var resposta = await dados.json();
-    //console.log(resposta);
+    //console.log(dados);
     if(resposta['status']){
-        document.getElementById("msgAlerta").innerHTML = "";
-        selectStatusPedido.reset();
 
-        listarDataTables = $('#listar-produtos').DataTable();
+        document.getElementById("msgAlerta").innerHTML = resposta['msg'];
+        //selectStatusPedido.reset();
+        listarDataTables = $('#listar-pedidos').DataTable();
         listarDataTables.draw();
+        //alert(selectStatusPedido);
+        setTimeout(function(){ 
+            document.getElementById("msgAlerta").innerHTML = "";
+        }, 3000);
+        
     }else{
         document.getElementById("msgAlerta").innerHTML = resposta['msg'];
     }
     
 };
+
+
+
+async function excluirPedido(id) {
+    var confirmarExclusao = confirm("Tem certeza que deseja excluir o pedido selecionado? ");
+    //console.log (confirmarExclusao);
+    if (confirmarExclusao) {
+        //console.log("acessou com o id: "+id);
+        const dados = await fetch("excluirPedido.php?id=" + id);
+        const resposta = await dados.json();
+        //console.log(resposta);
+
+        if (resposta['status']) {
+            document.getElementById("msgAlerta").innerHTML = resposta['msg'];
+            //atualizar a lista de produtos
+            listarDataTables = $('#listar-pedidos').DataTable();
+            listarDataTables.draw();
+        } else {
+            document.getElementById("msgAlerta").innerHTML = resposta['msg'];
+        }
+    }
+}

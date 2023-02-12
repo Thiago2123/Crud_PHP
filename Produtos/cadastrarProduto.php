@@ -2,6 +2,11 @@
     include_once "../conexaoComBd.php";
 
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+    
+    // formatar para o . para que possa ser gravado no bd
+    $valorFormatado = str_replace(",",".",$dados['valor']);
+    $dados['valor'] = $valorFormatado;
+
     //$data = date("H:i:s");
 
     if(empty($dados['nome'])){

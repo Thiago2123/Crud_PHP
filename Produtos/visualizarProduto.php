@@ -12,6 +12,7 @@ if(!empty($id)){
     if(($result_produto) and ($result_produto->rowCount() != 0)){
         $row_produto = $result_produto->fetch(PDO::FETCH_ASSOC);
         $retorna = ['status' => true, 'dados' => $row_produto];
+
         //transforma a data do banco em hrs 
         $data = strtotime($row_produto['criado_em']);
         //formata a data em hrs, em dia/mes/ano
@@ -19,7 +20,10 @@ if(!empty($id)){
 
         //retorna os dados com a data formatada
         $retorna = $retorna + ['dataFormatada' => $dataFormatada];
-        //var_dump($retorna);
+
+        $valorFormatado = number_format($retorna['dados']['valor'], 2, ",", ".");
+        $retorna = $retorna + ['valorFormatado' => $valorFormatado];
+        //var_dump($retorna['dados']['valor']);
 
     }else{
         $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' 

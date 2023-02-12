@@ -76,7 +76,7 @@
         $registro[] = "$pedidoId" ;
         //var_dump( $nomeProduto['nome']);
         $registro[] = "<p>
-        <div class='btn btn-primary btn-sm' data-toggle='collapse' href='#modal$pedidoId' role='button' aria-expanded='false'>
+        <div class='btn btn-warning btn-sm' data-toggle='collapse' href='#modal$pedidoId' role='button' aria-expanded='false'>
         Verificar Produtos
         </div></p>";
         foreach($row_produtosPedido as $produto_id => $produtosPedido){
@@ -87,9 +87,10 @@
                 <div class='card card-body'><b>".$produtosPedido['nome']."</b> </div>
             </div>";
         }        
-        $registro[] = $clienteNome;
-        $registro[] = "<select name= 'selectStatusPedido' id='selectStatusPedido' onchange='salvarEditPedido($pedidoId)' class='form-control form-control-sm'>
-                <option selected>".$statusPedido."</option>
+        $registro[] = $clienteNome; 
+        // coloquei o nome do select junto ao peidodId para que cada um na lista tenha um name diferente para o js 
+        $registro[] = "<select name= 'selectStatusPedido$pedidoId' id='selectStatusPedido$pedidoId' onchange='salvarEditPedido($pedidoId)' class='form-control form-control-sm'>
+                <option selected disable>".$statusPedido."</option>
                 <option value='Aberto'>Aberto </option>
                 <option value='Pago'>Pago</option>
                 <option value='Cancelado'>Cancelado</option>
@@ -97,7 +98,6 @@
         $registro[] = "R$ ".number_format($valorTotal, 2, ",", ".") ."";
         $registro[] = $criadoEm;
         $registro[] = " <button type='button' id='$pedidoId' onclick='visualizarClientesPedido($pedidoId)' class='btn btn-primary btn-sm'>Detalhes</button> 
-                            <button type='button' id='$pedidoId' onclick='modalEditarPedido($pedidoId)' class='btn btn-warning btn-sm'>Editar</button> 
                             <button type='button' id='$pedidoId' onclick='excluirPedido($pedidoId)' class='btn btn-danger btn-sm'>Excluir</button>";
         $dados[] = $registro;
     }

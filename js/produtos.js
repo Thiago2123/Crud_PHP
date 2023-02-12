@@ -68,7 +68,7 @@ async function visualizarProduto(id) {
         document.getElementById("idProdutoVis").innerHTML = resposta['dados'].id;
         document.getElementById("nomeProdutoVis").innerHTML = resposta['dados'].nome;
         document.getElementById("descricaoProdutoVis").innerHTML = resposta['dados'].descricao;
-        document.getElementById("valorProdutoVis").innerHTML = 'R$  ' + resposta['dados'].valor;
+        document.getElementById("valorProdutoVis").innerHTML = 'R$  ' + resposta.valorFormatado;
         document.getElementById("criadoEmProdutoVis").innerHTML = resposta.dataFormatada;
 
         document.getElementById("msgAlerta").innerHTML = "";
@@ -91,8 +91,9 @@ async function modalEditarProduto(id) {
         document.getElementById('idProdutoEdit').value = resposta['dados'].id;
         document.getElementById('nomeProdutoEdit').value = resposta['dados'].nome;
         document.getElementById('descricaoProdutoEdit').value = resposta['dados'].descricao;
-        document.getElementById('valorProdutoEdit').value = resposta['dados'].valor;
+        document.getElementById('valorProdutoEdit').value = resposta.valorFormatado;
         //document.getElementById('criadoEmProdutoEdit').value = resposta['dados'].criado_em;
+       
 
         $('#modalEditarProduto').modal('show');
     } else {
@@ -119,6 +120,7 @@ function salvarEditProduto() {
                 //document.getElementById("msgAlertaEditar").innerHTML = resposta['msg']
                 document.getElementById("msgAlertaEditar").innerHTML = "";
                 document.getElementById("msgAlerta").innerHTML = resposta['msg'];
+                
                 //limpar o formulario de editção
                 formEditProduto.reset();
                 $('#modalEditarProduto').modal('hide');

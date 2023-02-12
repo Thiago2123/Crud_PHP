@@ -19,7 +19,12 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container p-2">
+        <nav class="nav nav-pills nav-fill">
+            <a class="btn nav-item nav-link active" href="">Clientes</a>
+            <a class="nav-item nav-link " href="../Produtos/homeProduto.php">Produtos</a>
+            <a class="nav-item nav-link " href="../Pedidos/homePedidos.php">Pedidos</a>
+        </nav>
         <div class="d-flex justify-content-between align-items-center p-3 pb-2">
             <h1 class="display-6 mb-4">Listar Clientes</h1>
 

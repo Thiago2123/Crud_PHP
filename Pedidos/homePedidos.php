@@ -21,7 +21,14 @@
 <body>
 <?php     include_once "../conexaoComBd.php"; ?>
 
-    <div class="container">
+<div class="container">
+    </div>
+    <div class="container p-2">
+        <nav class="nav nav-pills nav-fill">
+            <a class="btn nav-item nav-link " href="../Clientes/homeCliente.php">Clientes</a>
+            <a class="nav-item nav-link" href="../Produtos/homeProduto.php">Produtos</a>
+            <a class="nav-item nav-link active" href="">Pedidos</a>
+        </nav>
         <div class="d-flex justify-content-between align-items-center p-3 pb-2">
             <h1 class="display-6 mb-4">Listar Pedidos</h1>
 
@@ -107,7 +114,7 @@
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <label for="descontoPedido">Desconto em %</label>
-                                    <input type="text" name="descontoPedido" class="form-control" id="descontoPedido"  placeholder="10" >
+                                    <input type="text" name="descontoPedido" class="form-control" id="descontoPedido"  placeholder="(10.., 15.., 50..)" >
                                 </div>
                                 <div class="form-group col-sm-4 ">
                                     <label for="criadoEmPedido">Data de Criação</label>

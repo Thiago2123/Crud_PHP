@@ -12,18 +12,18 @@
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
 
     <script src="js/clientes.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <div href="#" onclick="swal('Testanto o SweetAlert.');">Clique laaqui</div>
-
-
+  <!--  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <div href="#" onclick="swal('Testanto o SweetAlert.');">Clique laaqui</div> -->
+    
 </head>
 
 <body>
+<?php 
+// redirecionar o index para o pedidos
+  header('Location: Clientes/homeCliente.php');
+?>
     
-    <a class="btn btn-success" href="Clientes/homeCliente.php">Clientes</a>
-    <a class="btn btn-warning" href="Produtos/homeProduto.php">Produtos</a>
-    <a class="btn btn-danger" href="Pedidos/homePedidos.php">Pedidos</a>
-
 </body>
 <footer>
 

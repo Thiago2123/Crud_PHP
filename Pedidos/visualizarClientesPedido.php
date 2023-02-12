@@ -4,7 +4,8 @@ include_once "../conexaoComBd.php";
 $pedidoId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 //var_dump($pedidoId);
 if(!empty($pedidoId)){
-   $query_cliente_pedido =  "SELECT c.nome, c.cpf, c.rua, c.cidade, c.estado, p.criadoEm from pedidos p 
+   $query_cliente_pedido =  "SELECT c.nome, c.cpf, c.rua, c.complemento, c.cidade, c.estado, p.criadoEm 
+                        FROM pedidos p 
                         INNER join clientes c on c.id = p.clienteId
                         WHERE p.id = :pedidoId
                         LIMIT 1";

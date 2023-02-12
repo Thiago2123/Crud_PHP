@@ -5,6 +5,11 @@ include_once "../conexaoComBd.php";
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
+// formatar para o . para que possa ser gravado no bd
+$valorFormatado = str_replace(",",".",$dados['valor']);
+$dados['valor'] = $valorFormatado;
+
+
 if(empty($dados['id'])){
     $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' 
     role='alert'> <b>Erro</b>: Tente mais tarde, não enviado o ID: <b>".$dados['id']."</b></div>"];
@@ -17,6 +22,7 @@ if(empty($dados['id'])){
 }elseif(empty($dados['valor'])){
     $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' 
     role='alert'> <b>Erro</b>: Preencha o campo <b>Valor</b></div>"];
+    
 }else{
     $query_produto = "UPDATE produtos SET nome= :nome, descricao= :descricao, valor= :valor WHERE id=:id";
     $edit_produto = $conn->prepare($query_produto);
