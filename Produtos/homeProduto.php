@@ -70,7 +70,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text btn btn-success btn-md">R$</div>
                                     </div>
-                                    <input type="number" name='valor' class="form-control" id="valorProduto" placeholder="Valor do Produto">
+                                    <input type="text" name='valor' class="form-control" id="valorProduto" placeholder="00.00">
                                 </div>
                             </div>
                             <div class="form-group col-sm-6">
@@ -146,7 +146,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text btn btn-success btn-md">R$</div>
                                     </div>
-                                    <input type="number" name='valor' class="form-control" id="valorProdutoEdit" placeholder="Valor">
+                                    <input type="text" name='valor' class="form-control" id="valorProdutoEdit" placeholder="Valor">
                                 </div>
                             </div>
                         </div>

@@ -82,7 +82,7 @@
         $registro[] = $id;
         $registro[] = $nome;
         $registro[] = $descricao;
-        $registro[] = $valor;
+        $registro[] = "R$ ".number_format($valor, 2, ",", ".") ."";
         $registro[] = $criado_em;
         $registro[] = " <button type='button' id='$id' onclick='visualizarProduto($id)' class='btn btn-primary btn-sm'>Detalhes</button> 
                             <button type='button' id='$id' onclick='modalEditarProduto($id)' class='btn btn-warning btn-sm'>Editar</button> 
