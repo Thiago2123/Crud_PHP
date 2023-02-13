@@ -14,7 +14,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="../js/clientes.js"></script>
-    <script src="../js/ajustarCep.js"></script>
+    <script src="../js/procurarCep.js"></script>
+    <script src="../js/mascaras.js"></script>
 
 </head>
 
@@ -40,7 +41,7 @@
                     <th>Email</th>
                     <th>CPF</th>
                     <th>Rua</th>
-                    <th>Ações</th>
+                    <th class='col-2' >Ações</th>
                 </tr>
             </thead>
         </table>
@@ -71,11 +72,12 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label for="cpfCliente">CPF</label>
-                                <input type="text" name="cpf" class="form-control" id="cpfCliente" placeholder="CPF">
+                                <input type="text" name="cpf" onkeypress="mascararCpf(this)" class="form-control" id="cpfCliente" placeholder="CPF" maxlength="14">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="cepCliente">CEP</label>
-                                <input type="text" name="cep" class="cepInput form-control" id="cepCliente" placeholder="CEP">
+                                <input type="text" name="cep" onkeypress="mascararCep(this)" class="cepInput form-control" id="cepCliente" placeholder="CEP" maxlength="9">
+                                <label class="d-none" id= "msgInvalida" class="" style="color: red"></label>
                             </div>
                         </div>
                         <div class="row">
@@ -181,11 +183,11 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label for="cpfClienteEdit">CPF</label>
-                                <input type="text" name="cpf" class="form-control" id="cpfClienteEdit" placeholder="CPF">
+                                <input type="text" name="cpf" onkeypress="mascararCpf(this)" class="form-control" id="cpfClienteEdit" placeholder="CPF" maxlength="14">
                             </div>
                             <div class="col-sm-6">
                                 <label"form-group for="cepClienteEdit">CEP</label>
-                                    <input type="text" name="cep" class="cepInput form-control" id="cepClienteEdit" placeholder="CEP">
+                                    <input type="text" name="cep" class="cepInput form-control" id="cepClienteEdit" placeholder="CEP" maxlength="8">
                             </div>
                         </div>
                         <div class="row">

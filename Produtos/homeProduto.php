@@ -13,7 +13,7 @@
     
 
     <script src="../js/produtos.js"></script>
-    <script src="../js/ajustarCep.js"></script>
+    <script src="../js/procurarCep.js"></script>
 
 </head>
 
@@ -40,7 +40,7 @@
                     <th>Descrição</th>
                     <th>Valor</th>
                     <th>Criado em</th>
-                    <th>Ações</th>
+                    <th class='col-2' >Ações</th>
                 </tr>
             </thead>
         </table>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="descricaoProduto">Descrição</label>
-                                <input type="text" name="descricao" class="form-control" id="descricaoProduto" placeholder="Descrição do Produto">
+                                <textarea type="text" name="descricao" class="form-control" id="descricaoProduto" placeholder="Descrição do Produto"></textarea>
                             </div>
                         </div>
                         <div class="row">

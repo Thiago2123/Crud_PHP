@@ -10,6 +10,7 @@ $(document).ready(function () {
     });
 
 })
+
 function cadastrarCliente(){
  const formNovoCLiente = document.getElementById("form-cad-cliente");
  //const fecharModalCadastro = new bootstrap.Modal(document.getElementById("modalCadastroCliente"));

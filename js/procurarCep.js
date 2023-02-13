@@ -13,17 +13,21 @@ $(document).ready(function () {
         $("#bairroClienteEdit").val("");
         $("#cidadeClienteEdit").val("");
         $("#estadoClienteEdit").val("");
-        
 
-        
     }
+    // função para exibir a mensagem de erro e pintando o campo
+    function mensagemErro(msg){ 
+        $('.cepInput').css(({"border-color": "red"}));
+        $('#msgInvalida').removeClass("d-none").html(msg);
+        limpa_formulário_cep();
+    };
     
-    //Quando o campo cep perde o foco.
+    // Quando o campo cep perde o foco.
     $(".cepInput").blur(function() {
   
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
-  
+        //console.log(cep);
         //Verifica se campo cep possui valor informado.
         if (cep != "") {
   
@@ -65,23 +69,26 @@ $(document).ready(function () {
                         $("#bairroClienteEdit").val(dados.bairro);
                         $("#cidadeClienteEdit").val(dados.localidade);
                         $("#estadoClienteEdit").val(dados.uf);
+
+                        $('#msgInvalida').addClass("d-none");
+
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
-                        limpa_formulário_cep();
-                        alert("CEP não encontrado.");
+                        mensagemErro("CEP não encontrado");
+                        //alert("CEP não encontrado.");
                     }
                 });
             } //end if.
             else {
                 //cep é inválido.
-                limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
+                mensagemErro("Formato de CEP inválido");
+                //alert("Formato de CEP inválido.");
             }
         } //end if.
         else {
             //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
+            mensagemErro("Formato de CEP inválido");
         }
     });
 });

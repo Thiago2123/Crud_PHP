@@ -111,13 +111,12 @@ async function visualizarClientesPedido(pedidoId){
 async function salvarEditPedido(pedidoId) {
     // gravo o valor do selectStatusPedido em uma variavel
     var selectStatusPedido = document.getElementById("selectStatusPedido"+pedidoId).value;
-    //console.log(selectStatusPedido);
-    //console.log(pedidoId);
+    // console.log(selectStatusPedido);
+    // console.log(pedidoId);
     var dados = await fetch("editarPedido.php?selectStatusPedido=" + selectStatusPedido + "&pedidoId=" + pedidoId);
     var resposta = await dados.json();
-    //console.log(dados);
+    // console.log(dados);
     if(resposta['status']){
-
         document.getElementById("msgAlerta").innerHTML = resposta['msg'];
         //selectStatusPedido.reset();
         listarDataTables = $('#listar-pedidos').DataTable();
@@ -149,6 +148,10 @@ async function excluirPedido(id) {
             //atualizar a lista de produtos
             listarDataTables = $('#listar-pedidos').DataTable();
             listarDataTables.draw();
+            setTimeout(function(){ 
+                document.getElementById("msgAlerta").innerHTML = "";
+            }, 3000);
+            
         } else {
             document.getElementById("msgAlerta").innerHTML = resposta['msg'];
         }

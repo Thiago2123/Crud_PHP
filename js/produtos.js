@@ -152,6 +152,9 @@ async function excluirProduto(id) {
             //atualizar a lista de produtos
             listarDataTables = $('#listar-produtos').DataTable();
             listarDataTables.draw();
+            setTimeout(function(){ 
+                document.getElementById("msgAlerta").innerHTML = "";
+            }, 3000);
         } else {
             document.getElementById("msgAlerta").innerHTML = resposta['msg'];
         }

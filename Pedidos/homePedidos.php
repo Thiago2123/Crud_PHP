@@ -14,12 +14,14 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="../js/pedidos.js"></script>
-    <script src="../js/ajustarCep.js"></script>
+    <script src="../js/procurarCep.js"></script>
 
 </head>
 
 <body>
-<?php     include_once "../conexaoComBd.php"; ?>
+<?php    
+    include_once "../conexaoComBd.php"; 
+?>
 
 <div class="container">
     </div>
@@ -45,7 +47,7 @@
                     <th>Status</th>
                     <th>Valor</th>
                     <th>Data do Pedido</th>
-                    <th>Ações</th>
+                    <th class='col-2'>Ações</th>
                 </tr>
             </thead>
         </table>

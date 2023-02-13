@@ -2,6 +2,7 @@
 include_once "../conexaoComBd.php";
 
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+
 if(!empty($id)){
    $query_produto =  "SELECT *
         FROM produtos WHERE id = :id LIMIT 1";

@@ -2,9 +2,10 @@
     include_once "../conexaoComBd.php";
 
     $dados_requisicao = $_REQUEST;
+
     
     
-    //lista de colunas na tabela para ordenar
+    // lista de colunas na tabela para ordenar
     $colunas = [
         0 => 'id',
         1 => 'nome',
@@ -14,7 +15,7 @@
     ];
 
     $query_qnt_produtos = "SELECT COUNT(id) AS qnt_produtos FROM produtos ";
-        //modificar a query para realizar a busca
+        // modificar a query para realizar a busca
     if(!empty($dados_requisicao['search']['value'])){
         $query_qnt_produtos .= " WHERE id LIKE :id ";
         $query_qnt_produtos .= " OR nome LIKE :nome ";
@@ -36,11 +37,11 @@
 
     $result_qnt_produtos->execute();
     $row_qnt_produtos  = $result_qnt_produtos->fetch(PDO::FETCH_ASSOC);
-    //var_dump($row_qnt_produtos);
+    // var_dump($row_qnt_produtos);
 
     $query_produtos = "SELECT * 
                         FROM produtos ";   
-    // modifcar a query para realizar a pesquisa
+    //  modifcar a query para realizar a pesquisa
     if(!empty($dados_requisicao['search']['value'])){
         $query_produtos .= " WHERE id LIKE :id ";
         $query_produtos .= " OR nome LIKE :nome ";
@@ -49,7 +50,7 @@
         $query_produtos .= " OR criado_em LIKE :criado_em ";
     }    
     
-    //modificando a query para a ordenação
+    // modificando a query para a ordenação
     $query_produtos .= " ORDER BY " . $colunas[$dados_requisicao['order'][0]['column']]. " " .
     $dados_requisicao['order'][0]['dir'] . " LIMIT :inicio, :quantidade";
 
@@ -69,28 +70,37 @@
 
 
     $result_produtos->execute();
-    //var_dump($result_produtos);
+    // var_dump($result_produtos);
      
 
 
     while ($row_produto = $result_produtos->fetch(PDO::FETCH_ASSOC)) {
-        //var_dump($row_produto);
+        // var_dump($row_produto);
         extract($row_produto);
+
+        // transforma a data do banco em hrs, tranformando assim em int e podendo realizar a conversao que desejo logo a baixo
+        $data = strtotime($row_produto['criado_em']);
+        // formata a data de int, em dia/mes/ano hr e minuto
+        $dataFormatada = date('d/m/Y H:i', $data);
         
         $registro = [];
-        //como dei o "extract" na query posso usar o nome da coluna diretamente como chave do array
+        
+        // retorna os dados com a data formatada
+        $registro = $registro + ['dataFormatada' => $dataFormatada];
+        
+        // como dei o "extract" na query posso usar o nome da coluna diretamente como chave do array
         $registro[] = $id;
         $registro[] = $nome;
         $registro[] = $descricao;
         $registro[] = "R$ ".number_format($valor, 2, ",", ".") ."";
-        $registro[] = $criado_em;
+        $registro[] = $dataFormatada;
         $registro[] = " <button type='button' id='$id' onclick='visualizarProduto($id)' class='btn btn-primary btn-sm'>Detalhes</button> 
                             <button type='button' id='$id' onclick='modalEditarProduto($id)' class='btn btn-warning btn-sm'>Editar</button> 
                             <button type='button' id='$id' onclick='excluirProduto($id)' class='btn btn-danger btn-sm'>Excluir</button>";
         $dados[] = $registro;
     }
     
-    //var_dump($dados);
+    // var_dump($dados);
     $resultado = [
         "draw" => intval($dados_requisicao['draw']),
         "recordsTotal" => intval($row_qnt_produtos['qnt_produtos']),
