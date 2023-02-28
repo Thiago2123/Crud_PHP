@@ -17,8 +17,9 @@
         role='alert'> <b>Erro</b>: Deve preencher o campo <b>CEP</b> </div>"]; 
     }else{
         $query_cliente = "INSERT INTO clientes (nome, email, cpf, cep, rua, complemento, cidade, estado)
-        VALUES (:nome, :email, :cpf, :cep, :rua, :complemento, :cidade, :estado)";
+                            VALUES (:nome, :email, :cpf, :cep, :rua, :complemento, :cidade, :estado)";
         $cad_cliente = $conn->prepare($query_cliente);
+
         $cad_cliente->bindParam(':nome', $dados['nome'], PDO::PARAM_STR);
         $cad_cliente->bindParam(':email', $dados['email'], PDO::PARAM_STR);
         $cad_cliente->bindParam(':cpf', $dados['cpf'], PDO::PARAM_STR);

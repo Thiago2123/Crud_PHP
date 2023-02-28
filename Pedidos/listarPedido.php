@@ -20,6 +20,7 @@
     $row_qnt_pedidos  = $result_qnt_pedidos->fetch(PDO::FETCH_ASSOC);
     // var_dump($row_qnt_pedidos);
 
+    // query para listar todos os pedidos
     $query_pedidos = "SELECT ped.clienteId as clienteId, cli.nome as clienteNome, ped.criadoEm as criadoEnPedidos,
                         ped.id as pedidoId, ped.statusPedido as statusPedido, COUNT(ped.clienteId) as qntPedido, 
                         prodped.precoVenda as valorTotal, ped.criadoEm as criadoEm
@@ -91,14 +92,14 @@
         $registro[] = "$pedidoId" ;
         // var_dump( $nomeProduto['nome']);
         $registro[] = "<div class='btn btn-warning btn-sm' data-toggle='collapse' href='#modal$pedidoId'>
-                        Verificar Produtos
+                    <i class='fa-solid fa-list'></i> Verificar Produtos
                     </div>";
         foreach($row_produtosPedido as $produto_id => $produtosPedido){
             // o registro[1] é o indice 1 do registro, ou seja o botão "verificar produtos" 
             // var_dump($registro[1]);
             // var_dump($produtosPedido);
             $registro[1] .="<div class=' mt-1 collapse' id='modal$pedidoId'>
-                                <div class='card card-body'><b>".$produtosPedido['nome']."</b> </div>
+                                <div class='card card-body'> <b>".$produtosPedido['nome']."</b> </div>
                             </div>";
         }        
         $registro[] = $clienteNome; 
@@ -112,8 +113,8 @@
                         </select>";
         $registro[] = "R$ ".number_format($valorTotal, 2, ",", ".") ."";
         $registro[] = $dataFormatada;
-        $registro[] = " <button type='button' id='$pedidoId' onclick='visualizarClientesPedido($pedidoId)' class='btn btn-primary btn-sm'>Detalhes</button> 
-                        <button type='button' id='$pedidoId' onclick='excluirPedido($pedidoId)' class='btn btn-danger btn-sm'>Excluir</button>";
+        $registro[] = " <button type='button' id='$pedidoId' onclick='visualizarClientesPedido($pedidoId)' class='btn btn-primary btn-sm'><i class='fa-solid fa-grip-lines'></i> Detalhes</button> 
+                        <button type='button' id='$pedidoId' onclick='excluirPedido($pedidoId)' class='btn btn-danger btn-sm'><i class='fa-solid fa-trash-can'></i> Excluir</button>";
         
         $dados[] = $registro;
     }

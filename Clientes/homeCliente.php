@@ -11,11 +11,12 @@
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
     
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/3dd3effadf.js" crossorigin="anonymous"></script>
 
     <script src="../js/clientes.js"></script>
-    <script src="../js/procurarCep.js"></script>
     <script src="../js/mascaras.js"></script>
+    <script src="../js/procurarCep.js"></script>
+    <script src="../js/validarCpf.js"></script>
 
 </head>
 
@@ -30,7 +31,7 @@
             <h1 class="display-6 mb-4">Listar Clientes</h1>
 
             <!-- Botão para acionar modal -->
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCadastroCliente">Cadastrar Cliente</button>
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCadastroCliente"><i class="fa-solid fa-plus"> </i> Cadastrar Cliente</button>
         </div>
         <span id="msgAlerta"></span>
         <table id="listar-cliente" class=" table table-striped table-hover display" style="width:100%">
@@ -41,7 +42,7 @@
                     <th>Email</th>
                     <th>CPF</th>
                     <th>Rua</th>
-                    <th class='col-2' >Ações</th>
+                    <th class='col-3' ></th>
                 </tr>
             </thead>
         </table>
@@ -72,12 +73,13 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label for="cpfCliente">CPF</label>
-                                <input type="text" name="cpf" onkeypress="mascararCpf(this)" class="form-control" id="cpfCliente" placeholder="CPF" maxlength="14">
+                                <input type="text" name="cpf" onkeypress="mascararCpf(this)" class="form-control cpfInput" id="cpfCliente" placeholder="CPF" maxlength="14">
+                                <label class="d-none msgInvalidaCpf" id= "msgInvalidaCpf" class="" style="color: red"></label>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="cepCliente">CEP</label>
                                 <input type="text" name="cep" onkeypress="mascararCep(this)" class="cepInput form-control" id="cepCliente" placeholder="CEP" maxlength="9">
-                                <label class="d-none" id= "msgInvalida" class="" style="color: red"></label>
+                                <label class="d-none msgInvalida" id= "msgInvalida" style="color: red"></label>
                             </div>
                         </div>
                         <div class="row">
@@ -183,11 +185,14 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label for="cpfClienteEdit">CPF</label>
-                                <input type="text" name="cpf" onkeypress="mascararCpf(this)" class="form-control" id="cpfClienteEdit" placeholder="CPF" maxlength="14">
+                                <input type="text" name="cpf" onkeypress="mascararCpf(this)" class="cpfInput form-control" id="cpfClienteEdit" placeholder="CPF" maxlength="14">
+                                <label class="d-none msgInvalidaCpf" id= "msgInvalidaCpf" class="" style="color: red"></label>
+
                             </div>
                             <div class="col-sm-6">
                                 <label"form-group for="cepClienteEdit">CEP</label>
                                     <input type="text" name="cep" class="cepInput form-control" id="cepClienteEdit" placeholder="CEP" maxlength="8">
+                                    <label class="d-none msgInvalida" id= "msgInvalida" style="color: red">ss</label>
                             </div>
                         </div>
                         <div class="row">

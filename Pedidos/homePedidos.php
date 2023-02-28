@@ -11,7 +11,7 @@
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
     
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/3dd3effadf.js" crossorigin="anonymous"></script>
 
     <script src="../js/pedidos.js"></script>
     <script src="../js/procurarCep.js"></script>
@@ -35,7 +35,7 @@
             <h1 class="display-6 mb-4">Listar Pedidos</h1>
 
             <!-- Botão para acionar modal -->
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCadastroPedido">Cadastrar Pedido</button>
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCadastroPedido"><i class="fa-solid fa-plus"> </i> Cadastrar Pedido</button>
         </div>
         <span id="msgAlerta"></span>
         <table id="listar-pedidos" class=" table table-striped table-hover display" style="width:100%">
@@ -47,7 +47,7 @@
                     <th>Status</th>
                     <th>Valor</th>
                     <th>Data do Pedido</th>
-                    <th class='col-2'>Ações</th>
+                    <th class='col-2'></th>
                 </tr>
             </thead>
         </table>

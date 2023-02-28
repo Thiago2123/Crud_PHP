@@ -11,6 +11,7 @@
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
     
+    <script src="https://kit.fontawesome.com/3dd3effadf.js" crossorigin="anonymous"></script>
 
     <script src="../js/produtos.js"></script>
     <script src="../js/procurarCep.js"></script>
@@ -29,7 +30,7 @@
             <h1 class="display-6 mb-4">Listar Produtos</h1>
 
             <!-- Botão para acionar modal -->
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCadastroProduto">Cadastrar Produto</button>
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCadastroProduto"><i class="fa-solid fa-plus"> </i> Cadastrar Produto</button>
         </div>
         <span id="msgAlerta"></span>
         <table id="listar-produtos" class=" table table-striped table-hover display" style="width:100%">
@@ -40,7 +41,7 @@
                     <th>Descrição</th>
                     <th>Valor</th>
                     <th>Criado em</th>
-                    <th class='col-2' >Ações</th>
+                    <th class='col-3' ></th>
                 </tr>
             </thead>
         </table>

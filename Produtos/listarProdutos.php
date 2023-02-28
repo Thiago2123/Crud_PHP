@@ -94,9 +94,9 @@
         $registro[] = $descricao;
         $registro[] = "R$ ".number_format($valor, 2, ",", ".") ."";
         $registro[] = $dataFormatada;
-        $registro[] = " <button type='button' id='$id' onclick='visualizarProduto($id)' class='btn btn-primary btn-sm'>Detalhes</button> 
-                            <button type='button' id='$id' onclick='modalEditarProduto($id)' class='btn btn-warning btn-sm'>Editar</button> 
-                            <button type='button' id='$id' onclick='excluirProduto($id)' class='btn btn-danger btn-sm'>Excluir</button>";
+        $registro[] = " <button type='button' id='$id' onclick='visualizarProduto($id)' class='btn btn-primary btn-sm'><i class='fa-solid fa-grip-lines'></i> Detalhes</button> 
+                            <button type='button' id='$id' onclick='modalEditarProduto($id)' class='btn btn-warning btn-sm'><i class='fa-solid fa-pen-to-square'></i> Editar</button> 
+                            <button type='button' id='$id' onclick='excluirProduto($id)' class='btn btn-danger btn-sm'><i class='fa-solid fa-trash-can'></i> Excluir</button>";
         $dados[] = $registro;
     }
     

@@ -18,14 +18,14 @@ $(document).ready(function () {
     // função para exibir a mensagem de erro e pintando o campo
     function mensagemErro(msg){ 
         $('.cepInput').css(({"border-color": "red"}));
-        $('#msgInvalida').removeClass("d-none").html(msg);
+        $('.msgInvalida').removeClass("d-none").html(msg);
         limpa_formulário_cep();
     };
     
     // Quando o campo cep perde o foco.
     $(".cepInput").blur(function() {
   
-        //Nova variável "cep" somente com dígitos.
+        // Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
         //console.log(cep);
         //Verifica se campo cep possui valor informado.
@@ -69,8 +69,10 @@ $(document).ready(function () {
                         $("#bairroClienteEdit").val(dados.bairro);
                         $("#cidadeClienteEdit").val(dados.localidade);
                         $("#estadoClienteEdit").val(dados.uf);
-
-                        $('#msgInvalida').addClass("d-none");
+                        
+                        // no sucesso, desapareço a mesg de erro e volto pra cor normal do input
+                        $('.msgInvalida').addClass("d-none").html= "";
+                        $('.cepInput').css(({"border-color": "ced4da"}));
 
                     } //end if.
                     else {

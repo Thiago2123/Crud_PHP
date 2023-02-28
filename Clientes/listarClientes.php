@@ -56,9 +56,8 @@
         $query_clientes .= " OR estado LIKE :estado ";
     }
 
-    //modificando a query para a ordenação
-    $query_clientes .= " ORDER BY " . $colunas[$dados_requisicao['order'][0]['column']]. " " .
-        $dados_requisicao['order'][0]['dir'] . " LIMIT :inicio, :quantidade";
+    //modificando a query para a ordenação e paginação
+    $query_clientes .= " ORDER BY " . $colunas[$dados_requisicao['order'][0]['column']]. " " . $dados_requisicao['order'][0]['dir'] . " LIMIT :inicio, :quantidade";
 
 
     $result_clientes = $conn->prepare($query_clientes);
@@ -87,17 +86,17 @@
         $registro[] = $email;
         $registro[] = $cpf;
         $registro[] = $rua;
-        $registro[] = " <button type='button' id='$id' onclick='visualizarCliente($id)' class='btn btn-primary btn-sm'>Detalhes</button> 
-                        <button type='button' id='$id' onclick='modalEditarCliente($id)' class='btn btn-warning btn-sm'>Editar</button> 
-                        <button type='button' id='$id' onclick='excluirCliente($id)' class='btn btn-danger btn-sm'>Excluir</button>";
+        $registro[] = " <button type='button' id='$id' onclick='visualizarCliente($id)' class='btn btn-primary btn-sm'><i class='fa-solid fa-grip-lines'></i> Detalhes</button> 
+                        <button type='button' id='$id' onclick='modalEditarCliente($id)' class='btn btn-warning btn-sm'><i class='fa-solid fa-pen-to-square'></i> Editar</button> 
+                        <button type='button' id='$id' onclick='excluirCliente($id)' class='btn btn-danger btn-sm'><i class='fa-solid fa-trash-can'></i> Excluir</button>";
         $dados[] = $registro;
     }
     //var_dump($dados);
 
 
 
-    //criar um objeto para o js
-    //documentação do dataTables https://datatables.net/examples/data_sources/server_side
+    // criar um objeto para o js
+    // documentação do dataTables https://datatables.net/examples/data_sources/server_side
     $resultado = [
         "draw" => intval($dados_requisicao['draw']),
         "recordsTotal" => intval($row_qnt_clientes['qnt_clientes']),
